@@ -125,6 +125,8 @@ def render_email(papers:list[Paper]) -> str:
                 affiliations += ', ...'
         else:
             affiliations = 'Unknown Affiliation'
+        if "arxiv.org/pdf" in p.pdf_url:
+            p.pdf_url = p.pdf_url.replace("arxiv.org/pdf", "alphaxiv.org/abs")
         parts.append(get_block_html(p.title, authors, rate, p.tldr, p.pdf_url, affiliations))
 
     content = '<br>' + '</br><br>'.join(parts) + '</br>'
